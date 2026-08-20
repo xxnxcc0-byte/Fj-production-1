@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en-PK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Owner Product Manager | FJ Production</title>
+  <meta name="description" content="Simple local product manager for FJ Production website." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#173d31" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#adminEditor">Skip to product editor</a>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand-lockup" href="index.html#home" aria-label="FJ Production home">
+        <span class="logo-mark" aria-hidden="true">FJ</span>
+        <span class="brand-text"><strong>FJ Production</strong><span>Product Manager</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#shop">Shop</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-primary" id="headerWhatsapp" href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="admin-hero">
+      <div class="container">
+        <div class="section-kicker">Simple local admin</div>
+        <h1 class="section-title">Owner product manager</h1>
+        <div class="notice-card">
+          This is a lightweight product manager for a static website. Edits are saved in this browser using localStorage. For a live public website, export the JSON after editing and ask your developer to replace the default product data, or connect a real backend/CMS later. No online payment gateway is included.
+        </div>
+      </div>
+    </section>
+
+    <section class="container admin-layout" aria-label="Product management">
+      <aside class="admin-sidebar">
+        <div class="admin-actions" style="margin-top:0;margin-bottom:14px">
+          <button class="btn btn-gold btn-small" type="button" id="newProductBtn">Add product</button>
+          <button class="btn btn-outline btn-small" type="button" id="resetBtn">Reset defaults</button>
+        </div>
+        <div class="product-list" id="adminProductList"></div>
+      </aside>
+
+      <section class="admin-editor" id="adminEditor">
+        <form id="productForm">
+          <div class="admin-form-grid">
+            <div class="admin-field">
+              <label for="name">Product name</label>
+              <input id="name" required />
+            </div>
+            <div class="admin-field">
+              <label for="id">Product slug / ID</label>
+              <input id="id" required />
+            </div>
+            <div class="admin-field">
+              <label for="category">Category</label>
+              <input id="category" placeholder="Face Wash" required />
+            </div>
+            <div class="admin-field">
+              <label for="type">Product type</label>
+              <input id="type" placeholder="Face Care" required />
+            </div>
+            <div class="admin-field full">
+              <label for="price">Exact price label</label>
+              <input id="price" placeholder="Rs. 1,050 (150ml)" required />
+            </div>
+            <div class="admin-field">
+              <label for="minPrice">Minimum numeric price for filters</label>
+              <input id="minPrice" type="number" min="0" required />
+            </div>
+            <div class="admin-field">
+              <label for="available">Availability</label>
+              <select id="available"><option value="true">Available</option><option value="false">Unavailable</option></select>
+            </div>
+            <div class="admin-field full">
+              <label for="image">Primary image path</label>
+              <input id="image" placeholder="assets/products/IMG-20260817-WA0046.jpg" required />
+              <input id="imageUpload" type="file" accept="image/*" style="margin-top:10px" />
+              <img class="preview-image" id="imagePreview" alt="Product preview" />
+            </div>
+            <div class="admin-field full">
+              <label for="gallery">Gallery image paths, one per line</label>
+              <textarea id="gallery" placeholder="assets/products/image-1.jpg&#10;assets/products/image-2.jpg"></textarea>
+            </div>
+            <div class="admin-field full">
+              <label for="variants">Variant options, one per line: Label | Price | WhatsApp price text</label>
+              <textarea id="variants" placeholder="150ml | Rs. 1,050 | Rs. 1,050 (150ml)"></textarea>
+            </div>
+            <div class="admin-field full">
+              <label for="description">Short description</label>
+              <textarea id="description"></textarea>
+            </div>
+            <div class="admin-field full">
+              <label for="features">Key features, one per line</label>
+              <textarea id="features"></textarea>
+            </div>
+            <div class="admin-field full">
+              <label for="howToUse">How to use, one per line</label>
+              <textarea id="howToUse"></textarea>
+            </div>
+          </div>
+          <div class="admin-actions">
+            <button class="btn btn-primary" type="submit">Save product</button>
+            <button class="btn btn-outline" type="button" id="deleteBtn">Delete product</button>
+            <a class="btn btn-ghost" href="index.html#shop">Preview shop</a>
+          </div>
+        </form>
+
+        <div class="info-panel" style="margin-top:24px">
+          <h2>Export / Import product data</h2>
+          <p style="color:var(--muted);line-height:1.65">Use export after editing to back up product data. Import replaces the local product list in this browser.</p>
+          <div class="admin-actions">
+            <button class="btn btn-outline btn-small" type="button" id="exportBtn">Export JSON</button>
+            <button class="btn btn-gold btn-small" type="button" id="downloadBtn">Download JSON</button>
+            <button class="btn btn-primary btn-small" type="button" id="importBtn">Import JSON</button>
+          </div>
+          <textarea class="admin-output" id="jsonOutput" placeholder="Exported JSON appears here. You can also paste JSON here and click Import JSON."></textarea>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom"><span>© <span id="year"></span> FJ Production.</span><span>Static admin panel — WhatsApp ordering only.</span></div>
+  </footer>
+
+  <a class="float-whatsapp" id="floatWhatsapp" href="#" target="_blank" rel="noopener" aria-label="Chat with FJ Production on WhatsApp">💬</a>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
